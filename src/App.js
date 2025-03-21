@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Card=(props)=>{
+  return <div className='card'>
+    <img src={props.data.thumbnail} alt={props.data.brand}></img>
+    <p>{props.data.title}</p>
+  </div>
 }
 
+const App=()=>{
+  const [result,setResult]=useState([])
+  const FetchData=async()=>{
+    const data=await fetch("https://dummyjson.com/products?limit=500")
+    const json=await data.json()
+    console.log(json.products)
+    setResult(json?.products)
+  }
+  useEffect(()=>{
+    FetchData()
+  },[])
+  return <div className='App'>
+    <h3>Pagination</h3>
+    <div className='btn-container'>
+      {[...Array(10).keys().map((x)=>{
+        return <button>{x}</button>
+      })]}
+    </div>
+    <div className='flex'>
+    {result.map((x)=>{
+      return <Card key={x.id} data={x}/>
+    })}
+    </div>
+  </div>
+}
 export default App;
