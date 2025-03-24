@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import './App.css';
 import React from 'react';
 
@@ -11,7 +11,9 @@ const Card=(props)=>{
 
 const App=()=>{
   const [result,setResult]=useState([])
-  const [search,setSeach]=useState('')
+
+  const[startPage,setStartPage]=useState(0);
+
   const FetchData=async()=>{
     const data=await fetch("https://dummyjson.com/products?limit=500")
     const json=await data.json()
@@ -19,22 +21,27 @@ const App=()=>{
     setResult(json?.products)
   }
   const page_size=10;
-  // const pageNobers=pag
+  const page_lenth=result.length;
+  const pageNobers=Math.ceil(page_lenth/page_size)
+  const Start=page_size*startPage;
+  const End=Start+page_size
   useEffect(()=>{
     FetchData()
   },[])
   const pageHandle=()=>{
-    setSeach((prev)=>prev+1)
+    setStartPage((prev)=>prev+1)
   }
   return <div className='App'>
     <h3>Pagination</h3>
     <div className='btn-container'>
-      {[...Array(10).keys().map((x)=>{
-        return <button onChange={(n)=>pageHandle(n)} value={search}>{x}</button>
+    {/* <button onClick={(e)=>{prevPage()}}>◀</button> */}
+      {[...Array(pageNobers).keys().map((x)=>{
+        return <button onClick={(n)=>pageHandle(n)}>{x}</button>
       })]}
+      <button>▶</button>
     </div>
     <div className='flex'>
-    {result.map((x)=>{
+    {result.slice(Start,End).map((x)=>{
       return <Card key={x.id} data={x}/>
     })}
     </div>
