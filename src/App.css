@@ -47,8 +47,12 @@ img {
 .btn-container{
   padding: 10px;
 }
-button{
-  padding: 4px 7px;
+.btn{
+  /* padding: 4px 7px; */
   margin: 5px;
   cursor: pointer;
+}
+.active{
+  background-color: aqua;
+  font-size: 200px;
 }
