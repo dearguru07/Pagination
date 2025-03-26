@@ -21,27 +21,6 @@ const App = () => {
     console.log(json.products);
     setResult(json?.products);
   };
-  const FetchData = async () => {
-    const data = await fetch("https://dummyjson.com/products?limit=500");
-    const json = await data.json();
-    console.log(json.products);
-    setResult(json?.products);
-  };  const FetchData = async () => {
-    const data = await fetch("https://dummyjson.com/products?limit=500");
-    const json = await data.json();
-    console.log(json.products);
-    setResult(json?.products);
-  };  const FetchData = async () => {
-    const data = await fetch("https://dummyjson.com/products?limit=500");
-    const json = await data.json();
-    console.log(json.products);
-    setResult(json?.products);
-  };  const FetchData = async () => {
-    const data = await fetch("https://dummyjson.com/products?limit=500");
-    const json = await data.json();
-    console.log(json.products);
-    setResult(json?.products);
-  };
   const page_size = 10;
   const page_lenth = result.length;
   const pageNobers = Math.ceil(page_lenth / page_size);
