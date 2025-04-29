@@ -18,10 +18,10 @@ const App = () => {
   const FetchData = async () => {
     const data = await fetch("https://dummyjson.com/products?limit=500");
     const json = await data.json();
-    console.log(json.products);
+    // console.log(json.products);
     setResult(json?.products);
   };
-  const page_size = 10;
+  const page_size = 12;
   const page_lenth = result.length;
   const pageNobers = Math.ceil(page_lenth / page_size);
   const Start = page_size * startPage;
@@ -52,8 +52,7 @@ const App = () => {
               return (
                 <button
                   className={"btn" + (x === startPage ? "active" : "")}
-                  key={x.id}
-                  onClick={() => pageHandle(x)}
+                  key={x.sku} onClick={() => pageHandle(x)}
                 >
                   {x}
                 </button>
@@ -69,7 +68,7 @@ const App = () => {
       </div>
       <div className="flex">
         {result.slice(Start, End).map((x) => {
-          return <Card key={x.id} data={x} />;
+          return <Card key={x.sku} data={x} />;
         })}
       </div>
     </div>
