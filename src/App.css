@@ -51,8 +51,10 @@ img {
   /* padding: 4px 7px; */
   margin: 5px;
   cursor: pointer;
+
 }
 .active{
   background-color: aqua;
+  cursor: pointer;
   font-size: 200px;
 }
