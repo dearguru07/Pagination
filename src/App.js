@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+// import {lazy, suspence} from "react"
 import React from "react";
 
 const Card = (props) => {
